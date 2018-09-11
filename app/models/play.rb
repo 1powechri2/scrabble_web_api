@@ -14,11 +14,15 @@ class Play < ApplicationRecord
 
   private
 
-  def score_word
+  def sum_score
     sum = 0
     word.each_char do |char|
       sum += letter_scores[char.upcase]
     end
-    self.score = sum
+    sum
+  end
+
+  def score_word
+    self.score = sum_score
   end
 end

@@ -8,5 +8,11 @@ describe Play do
         expect(play.score).to eq(6)
       end
     end
+    context "#score_word" do
+      it "scores the word" do
+        play = create(:play, word: "qi")
+        expect(play.score).to eq(11)
+      end
+    end
   end
 end
