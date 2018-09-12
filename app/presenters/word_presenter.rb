@@ -1,22 +1,22 @@
 class WordPresenter
   def initialize(word)
     @word = word
+    @service = DictionaryService.new(word)
+  end
+
+  def dictionary_response
+    @service.response
   end
 
   def validation_message
-    conn = Faraday.new(:url => 'https://od-api.oxforddictionaries.com/api/v1/') do |faraday|
-      faraday.adapter  Faraday.default_adapter
-    end
-    response = conn.get do |req|
-      req.url "inflections/en/#{@word}"
-      req.headers['app_id'] = ENV['DICT_KEY']
-      req.headers['app_key'] = ENV['APP_KEY']
-    end
+    if @service.status == 
+  end
 
-    if response.status == 404
+  def validation_message
+    if dictionary_response.status == 404
       "'#{@word}' is not a valid word."
     else
-      word_json = JSON.parse(response.body, symbolize_names: true)
+      word_json = JSON.parse(dictionary_response.body, symbolize_names: true)
       word = Word.new(word_json)
       "'#{word.id}' is a valid word and its root form is '#{word.root}'."
     end
