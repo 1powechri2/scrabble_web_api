@@ -12,4 +12,3 @@
 * Install an HTTP library (i.e. [Faraday](https://github.com/lostisland/faraday), [HTTPart](https://github.com/jnunemaker/httparty))
 * Decide how you want to mock HTTP calls (i.e. [Webmock](https://github.com/bblimke/webmock), [vcr](https://github.com/vcr/vcr))
 * Decide how you want to handle and hide ENV variables
-When I send a GET request to “/api/v1/games/1” I receive a JSON response as follows:
