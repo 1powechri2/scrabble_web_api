@@ -13,10 +13,12 @@ class WordPresenter
       req.headers['app_key'] = ENV['APP_KEY']
     end
 
-    word_json = JSON.parse(response.body, symbolize_names: true)
-
-    word = Word.new(word_json)
-
-    "'#{word.id}' is a valid word and its root form is '#{word.root}'."
+    if response.status == 404
+      "'#{@word}' is not a valid word."
+    else
+      word_json = JSON.parse(response.body, symbolize_names: true)
+      word = Word.new(word_json)
+      "'#{word.id}' is a valid word and its root form is '#{word.root}'."
+    end
   end
 end
