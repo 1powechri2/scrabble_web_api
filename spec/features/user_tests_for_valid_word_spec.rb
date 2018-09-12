@@ -15,12 +15,14 @@ require "rails_helper"
 
 describe 'A user visits root to validate word' do
   it 'sees that a word is valid' do
-    visit root_path
+    VCR.use_cassette("word_lookup", :record => :new_episodes) do
+      visit root_path
 
-    fill_in "Search", with: "foxes"
+      fill_in :search, with: "foxes"
 
-    click_on "validate Word"
+      click_on "validate Word"
 
-    expect(page).to have_content("'foxes' is a valid word and its root form is 'fox'.")
+      expect(page).to have_content("'foxes' is a valid word and its root form is 'fox'.")
+    end
   end
 end
