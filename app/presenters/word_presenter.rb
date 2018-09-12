@@ -16,6 +16,7 @@ class WordPresenter
     word_json = JSON.parse(response.body, symbolize_names: true)
 
     word = Word.new(word_json)
-    binding.pry
+
+    "'#{word.id}' is a valid word and its root form is '#{word.root}'."
   end
 end

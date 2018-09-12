@@ -14,7 +14,7 @@
 require "rails_helper"
 
 describe 'A user visits root to validate word' do
-  xit 'sees that a word is valid' do
+  it 'sees that a word is valid' do
     visit root_path
 
     fill_in :search, with: "foxes"
