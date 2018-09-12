@@ -16,4 +16,12 @@ class DictionaryService
       req.headers['app_key'] = ENV['APP_KEY']
     end
   end
+
+  def response_body
+    if response.status == 404
+      nil
+    else
+      JSON.parse(response.body, symbolize_names: true)
+    end
+  end
 end

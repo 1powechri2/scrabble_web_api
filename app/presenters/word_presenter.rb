@@ -4,20 +4,11 @@ class WordPresenter
     @service = DictionaryService.new(word)
   end
 
-  def dictionary_response
-    @service.response
-  end
-
   def validation_message
-    if @service.status == 
-  end
-
-  def validation_message
-    if dictionary_response.status == 404
+    if @service.response_body == nil
       "'#{@word}' is not a valid word."
     else
-      word_json = JSON.parse(dictionary_response.body, symbolize_names: true)
-      word = Word.new(word_json)
+      word = Word.new(@service.response_body)
       "'#{word.id}' is a valid word and its root form is '#{word.root}'."
     end
   end
